@@ -34,7 +34,7 @@ const navigate = useNavigate();
 
 
   <div className="center">
-    Leco
+    Thrift-Store
   </div>
   <div className="right">
   <TbSearch />
