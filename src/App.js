@@ -15,6 +15,7 @@ import axios from 'axios'
 
 import ProductDetail from './Components/Products/Detail/ProductDetail'
 import Cart from './Components/Cart/Cart'
+import HeaderDetails from './Components/Header/HeaderDetails'
 
 function App() {
  
@@ -33,8 +34,10 @@ return (
        {<ProductDetail/>}    
     
         />
+
 <Route exact path='/Login' element={<AiOutlineHeart />}/>
 <Route exact path="/cart" element={<Cart/>} />
+<Route exact path="/details" element={<HeaderDetails/>} />
 </Routes>
 </Router>
 

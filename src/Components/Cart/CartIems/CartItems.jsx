@@ -6,28 +6,36 @@ import { useState,useEffect } from 'react'
 import { addToCart  } from '../../Products/Detail/ProductDetail'
 import { useSelector ,  } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { emptycartIteam, removeToCart } from '../../../store/cartSlice'
+import { emptycartIteam, removeToCart ,incrementProduct ,reduceProduct,removeFromCart } from '../../../store/cartSlice'
 import { useDispatch } from 'react-redux'
-function CartItems( ) {
+import {toast} from 'react-toastify';
+function CartItems() {
+    const [cartItems, setCartItems] = useState([]);
 
   const {carts} = useSelector((state)=>state.allCart);
-const [quantity, setQuantity] = useState(1);
- const dispatch = useDispatch();
-const handleDecreament = (e)=>{
-dispatch(removeToCart(e))
-}
-const removed = (e)=>{
-  dispatch(emptycartIteam(e))
-  }
-const decreament=(e)=>{
- 
-  setQuantity(prevCount=>prevCount-1 )
-}
+const [quantity, setQuantity] = useState(5);
 
-const increament=(e)=>{
-  setQuantity(prevCount=>prevCount+1)
-}
-  
+ const dispatch = useDispatch();
+
+
+ const removeProductHandler = (e) => {
+    dispatch(removeFromCart(e));
+ }
+  const removeAll= ()=>{
+    dispatch(emptycartIteam())
+    }
+    const decreament=(e)=>{
+        if(quantity>1){
+            setQuantity(prevCount=>prevCount-1 )
+        }
+      
+        
+      }
+      const increament=(e)=>{
+        setQuantity(prevCount=>prevCount+1)
+      }
+     
+        
   return (
     <>
         <div className='row justify-content-center m-0'>
@@ -38,7 +46,7 @@ const increament=(e)=>{
                             <h5 className='text-white m-0'>Cart Calculation{carts.length >0 ? `(${carts.length})`:""}</h5>
                             {
                                 carts.length > 0 ? <button className='btn btn-danger mt-0 btn-sm'
-                               onClick={()=>removed()}
+                               onClick={removeAll} 
                                 ><i className='fa fa-trash-alt mr-2'></i><span>EmptyCart</span></button>
                                     : ""
                             }
@@ -78,7 +86,7 @@ const increament=(e)=>{
                                                         <tr>
                                                             <td>
                                                                 <button className='prdct-delete'
-                                                             onClick={()=>handleDecreament(data.id)} 
+                                                         onClick={() => removeProductHandler((data))}
                                                                 ><i className='fa fa-trash-alt'></i></button>
                                                             </td>
                                                             <td><div className='product-img'><img src={data.image} alt="" /></div></td>
@@ -86,12 +94,12 @@ const increament=(e)=>{
                                                             <td>${data.price}</td>
                                                             <td>
                                                                 <div className="prdct-qty-container">
-                                                                    <button className='prdct-qty-btn' type='button' 
-                                                                 onClick={()=>decreament(data.id)}   >
+                                                                    <button className='prdct-qty-btn' type='button' onClick={()=>decreament(data.id)}
+                                                                   >
                                                                         <i className='fa fa-minus'></i>
                                                                     </button>
                                                                     <input type="text" className='qty-input-box' value={quantity} disabled name="" id="" />
-                                                                    <button className='prdct-qty-btn' type='button' onClick={()=>increament(data.id)}>
+                                                                    <button className='prdct-qty-btn' type='button' onClick={()=>increament(data.id)} >
                                                                         <i className='fa fa-plus'></i>
                                                                     </button>
                                                                 </div>
@@ -122,8 +130,8 @@ const increament=(e)=>{
 
 
 
-
+                        }
 
                                          
-  }
+  
 export default CartItems

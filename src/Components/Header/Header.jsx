@@ -46,9 +46,7 @@ const navigate = useNavigate();
                           <CgShoppingCart />  
                            
                         </span>
-                    <span className="heart">
-                    <NavLink to="/Login">   <li>   <AiOutlineHeart /></li></NavLink>
-                      </span> 
+                  
                      
   </div>
 

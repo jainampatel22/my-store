@@ -80,6 +80,8 @@
                 display: flex;
                 justify-content: center;
                 gap: 20px;
+              
+              color: inherit;
                 .banner-cta {
                     text-transform: uppercase;
                     font-size: 13px;
@@ -89,6 +91,7 @@
                     padding: 10px 20px;
                     transition: all ease 0.3s;
                     cursor: pointer;
+                    color: white;
                     &.v2 {
                         background-color: white;
                         color: black;

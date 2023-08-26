@@ -1,6 +1,7 @@
 import React from 'react'
 import BannerImg from "./banner-img.png";
 import './Banner.scss'
+import { Link ,NavLink} from 'react-router-dom';
 function Banner() {
   return (
     <div className='hero-banner'>
@@ -11,7 +12,7 @@ function Banner() {
             Hurry Up!! <br /> Headphones For Just ₹2500! Offer Valid For  Just 3 Days
                     </p>
                     <div className="ctas">
-                        <div className="banner-cta">Buy Now</div>
+              <NavLink to={'./details'}><div className="banner-cta">Buy Now</div> </NavLink>
                         <div className="banner-cta v2">Add To Cart</div>
                         </div>
                 </div>
